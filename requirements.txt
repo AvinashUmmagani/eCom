@@ -36,7 +36,7 @@ typed-ast==1.4.0
 urllib3==1.25.7
 wrapt==1.11.2
 wheel==0.30.0
-setuptools==1.0
+
 
 
 
