@@ -62,6 +62,7 @@ STRIPE_SECRET_KEY = 'sk_test_vQMUKe3reph39hVffrrTHINx00hLBGvtxN'
 STRIPE_PUB_KEY = 'pk_test_YAkn6NLTWIOdoYVdXyh0oyLx0048Jhc6NS'
 
 MIDDLEWARE = [
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
