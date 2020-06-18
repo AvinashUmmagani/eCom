@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<br>
+<h4 class="text-center">Add Payment Method</h4>
+<br>
+<!-- Stripe Form -->
+<div class="col-10 col-md-6 mx-auto">
+    <div class="stripe-payment-form" data-token="{{publish_key}}" data-next-url="{% if nextUrl%}{{nextUrl}}{% endif %}" data-btn-title="Add New Card"></div>
+</div>
+
+{% endblock body %}
+
+

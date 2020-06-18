@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<br>
+<br>
+<div class="container">
+    <div class='row'>
+        <div class="col-12 col-md-6">
+            {{object.title}} <br><hr>
+            {{object.description}} <br>
+            {{object.price}} <br>
+            {% if object.image  %}
+                <img src="{{object.image.url}}" class='img-fluid' alt="Image not found" srcset=""/>
+                <br>    
+            {% endif %}
+        </div>
+        <div class="col-12 col-md-6">
+            {% include 'addToCart.html' with product=object cart=cart  %}
+        </div>
+    </div>
+</div>
+{% endblock body %}
+    

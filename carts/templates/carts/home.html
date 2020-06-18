@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    <hr>
+    <h4 class = "text-center" >{{user}} 's  Cart</h4>
+    {% if cart.products.exists %}
+    <hr>
+    <div class="container">
+    <table class="table cart-table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">ProductNo</th>
+            <th scope="col">Product Name</th>
+            <th scope="col">Product Price</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody class = "cart-body">
+            {% for product in cart.products.all %}
+                <tr class="cart-product">
+                    <th scope="row">{{ forloop.counter }}</th>
+                    <td><a href="{{product.get_absolute_url}}" style="text-decoration: None;color:black;" >{{product.title}}</a></td>
+                    <td>Rs. {{product.price}}</td>
+                    <td>{% include 'carts/snippets/remove-product.html' with product_id=product.id  %}</td>
+                </tr>
+            {% endfor %}
+          <tr>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <td><b>Subtotal : <span class="cart-subtotal"> Rs. {{cart.subtotal}} </span>  </b></td>
+          </tr>
+          <tr>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <td><b>Total : <span class="cart-total"> Rs. {{cart.total}} (Including Taxes)</span> </b></td>
+          </tr>
+          <tr>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <td><a class="btn btn-success" href='{% url "carts:checkout" %}'>Checkout</a></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="cart-item-remove-form" style="display: none;">
+          {% include 'carts/snippets/remove-product.html' %}
+      </div>
+
+    {% else %}
+    <hr>
+    <div class = "container text-center">
+        <p class = "lead" style="color:red;"> <b> Cart is Empty </b></p>
+    </div>
+    {% endif %}
+    </div>
+{% endblock body %}
+

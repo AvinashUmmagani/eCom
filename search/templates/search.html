@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<br>
+
+{% if query %}
+<div class="col-12 mb-3">
+    Search results for '{{query}}'
+    <hr>
+</div>    
+{% endif %}
+
+{% if object_list %}
+{% for obj in object_list %}
+<div class="container">
+    <div class="card mb-6" style="max-width: 540px;">
+        <a  style="text-decoration : None;color:black" href="{{obj.get_absolute_url}}">
+            <div class="row no-gutters">
+                <div class="col-md-10 image-fluid">
+                    {% if  obj.image %} 
+                        <img src="{{obj.image.url}}" class="card-img" alt="Image not found">
+                    {% endif %}
+                </div>
+        </a>
+                <div class="col-md-6">
+                    <div class="card-body">
+                        <h5 class="card-title">{{obj.title}}</h5>
+                        <p class="card-text">{{obj.description | truncatewords:15}}</p>
+                        <p class="card-text"><small class="text-muted">&#8377;{{obj.price}}</small></p>
+                        {% include 'addToCart.html' with product=obj cart=cart  %}
+                        <a href="{{obj.get_absolute_url}}">view more</a>
+                        <br>
+                        <small class="card-text">Product added on: {{obj.timestamp}}</small>
+                    </div>
+                </div>
+            </div>
+        
+    </div>
+    
+</div>
+<br>
+{% endfor %}
+{% else %}
+<div class="col-12 mb-3" style="color:red">
+    No search results for '{{query}}'
+    <hr>
+</div>  
+{% endif %}
+{% endblock body %}
+    

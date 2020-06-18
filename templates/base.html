@@ -1,0 +1,116 @@
+{% load static %}
+{% url 'about' as about_url %}
+{% url 'home' as home_url %}
+{% url 'product:list' as products_url%}
+{% url 'contact' as contact_url  %}
+{% url 'accounts:login' as login_url %}
+{% url 'accounts:logout' as logout_url %}
+{% url 'accounts:register' as register_url %}
+{% url 'carts:home' as cart_url %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel ="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href='{% static "css/myfile.css" %}'>
+    <title>Welcome !</title>
+  </head>   
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color:black">
+        <a class="navbar-brand" href="{{home_url}}">
+          <img src="{% static 'images/brand.jpg' %}" width="30" height="30" alt="">
+        </a>
+        <a class="navbar-brand" href="{{home_url}}">eCom</a> 
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item {% if request.path == about_url %}active{% endif %}">
+              <a class="nav-link" href="{{about_url}}">About</a>
+            </li>
+            <li class="nav-item {% if request.path == contact_url %}active{% endif %}">
+              <a class="nav-link" href="{{contact_url}}">Contact Us</a>
+            </li>
+            <li class="nav-item mr-5 {% if request.path == products_url %}active{% endif %}">
+              <a class="nav-link" href="{{products_url}}">Products</a>
+            </li>
+            <li>
+              <form action="{% url 'search:list' %}" method="GET" class="form my-2 my-lg-0 search-form" style="width:500px !important">
+                <div class="input-group">
+                  <input class="form-control" type="search" placeholder="Search" name="q" value="{{request.GET.q}}" aria-label="Search">
+                  <span class="input-group-btn">
+                   <button class="btn btn-dark" type="submit">Search</button>
+                 </span>
+                </div>
+              </form>
+            </li>
+          </ul>
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item {% if request.path == cart_url %}active{% endif %} ">
+              <a class="nav-link" href="{{cart_url}}"><i class="fa fa-shopping-cart" aria-hidden="true"><span class="navbar-cart-count">{{request.session.cart_items}}</span></i>
+              </a>
+            </li>
+            {% if request.user.is_authenticated %}
+                <li class="nav-item {% if request.path == login_url %}active{% endif %} ">
+                  <a class="nav-link" href="{{logout_url}}">Logout</a>
+                </li>
+              {% else %}
+                <li class="nav-item {% if request.path == login_url %}active{% endif %}">
+                  <a class="nav-link" href="{{login_url}}">Login</a>
+                </li>
+                <li class="nav-item {% if request.path == register_url %}active{% endif %}">
+                  <a class="nav-link" href="{{register_url}}">Register</a>
+                </li>
+              {% endif %}
+          </ul>
+        </div>
+      </nav>
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    
+    
+    <!-- jquery-confirm -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
+    
+    <!-- js render -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsrender/1.0.6/jsrender.min.js"></script>
+    {% include "js-templates.html" %}
+    <!-- stripe-js -->
+    <script src="https://js.stripe.com/v3/"></script>
+    <link rel="stylesheet" href="{% static 'css/stripe-style.css' %}" />
+
+    <!-- Secure ajax js -->
+    <script type="text/javascript" src="{% static 'js/csrf.ajax.js' %}"></script>
+    
+    <!-- custom js -->
+    <script type="text/javascript" src="{% static 'js/ecommerce.js' %}"></script>
+    
+    <!-- custom2 js -->
+    <script type="text/javascript" src="{% static 'js/ecommerce.main.js' %}"></script>
+    
+    <div class='container'>
+      {% if messages %}
+    <div class="alert alert-success messages">
+        {% for message in messages %}
+        <span {% if message.tags %} class="{{ message.tags }}"{% endif %}>
+            {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Important: {% endif %}
+            {{ message }}<br/>
+        </span>
+        {% endfor %}
+    </div>
+    {% endif %}
+    {% block body %}{% endblock %}
+  </div> 
+         
+  </body>
+</html>
+

@@ -1,0 +1,14 @@
+<div style="width:40%" class="container">
+    <form action="{% if action_url %}{{action_url}}{% else %}{% url 'accounts:login' %}{%endif%}" method="POST">
+        {% csrf_token %}
+            {% if next_url %}
+                <input type="hidden" name ="next" value="{{next_url}}">
+            {% else %}
+            {{form.as_p}}
+            <br>
+            <div class="container d-flex justify-content-center">
+                <input type="submit" class='btn btn-dark' value="Login">
+            </div>
+            {% endif %}
+    </form>
+</div>

@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<br>
+<div class='container'>
+    {{object.title}} <br>
+    {{object.description}} <br>
+    {{object.price}} <br>
+    <img src="{{object.image.url}}" class='img-fluid' alt="Image not found" srcset=""/>
+    <br>
+</div>
+{% endblock body %}
+        

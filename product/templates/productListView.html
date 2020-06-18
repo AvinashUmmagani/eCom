@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<br>
+{% if request.user.is_authenticated %}
+
+    {% for obj in object_list %}  
+    <div class="card mb-3 ml-auto mr-auto" style="max-width: 600px;">
+        <div class="row no-gutters">
+            <div class="col-md-4">
+                <a href="{{obj.get_absolute_url}}" >
+                    {% if  obj.image %} 
+                    <img src="{{obj.image.url}}" style="max-width: 20rem;max-height: 20rem;" class="card-img-top" alt="Image Not found">       
+                    {% else %}
+                    <img src="" alt="Image Not found" srcset="">
+                    {% endif %}
+                </a>
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                <h5 class="card-title">{{obj.title}}</h5>
+                <p class="card-text">{{obj.description | truncatewords:15}}</p>
+                <small><p class="card-text"> &#8377; {{obj.price}}</p></small>
+                <br>
+                {% include 'addToCart.html' with product=obj cart=cart  %}
+                <small class="text-muted"><a href="{{obj.get_absolute_url}}" class="card-text">view more</a></small>
+                <p><small class="text-muted">Product added on: {{obj.timestamp}}</small></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+
+    {% endfor %}
+    
+{% else %}
+
+{% for obj in object_list %}
+<div class="card mb-3 ml-auto mr-auto" style="max-width: 600px;">
+    <div class="row no-gutters">
+        <div class="col-md-4">
+            <a href="#" >
+                {% if  obj.image %} 
+                <img src="{{obj.image.url}}" style="max-width: 25rem;max-height: 25rem;" class="card-img-top" alt="Image Not found">       
+                {% else %}
+                <img src="" alt="Image Not found" srcset="">
+                {% endif %}
+            </a>
+        </div>
+        <div class="col-md-8">
+            <div class="card-body">
+            <h5 class="card-title">{{obj.title}}</h5>
+            <p class="card-text">{{obj.description | truncatewords:15}}</p>
+            <small><p class="card-text"> &#8377; {{obj.price}}</p></small>
+            <br>
+            {% include 'addToCart.html' with product=obj cart=cart  %}
+            <small class="text-muted">To view more please login</small>
+            <p><small class="text-muted">Product added on: {{obj.timestamp}}</small></p>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+
+
+
+{% endfor %}
+
+
+{% endif %}
+{% endblock body %}
+
