@@ -19,6 +19,8 @@
                 <div class="col-md-10 image-fluid">
                     {% if  obj.image %} 
                         <img src="{{obj.image.url}}" class="card-img" alt="Image not found">
+                    {% else %}
+                    <img src="" alt="Image Not found" srcset="">
                     {% endif %}
                 </div>
         </a>
