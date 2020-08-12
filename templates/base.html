@@ -4,6 +4,7 @@
 {% url 'product:list' as products_url%}
 {% url 'contact' as contact_url  %}
 {% url 'accounts:login' as login_url %}
+{% url 'marketing-pref' as marketing_url %}
 {% url 'accounts:logout' as logout_url %}
 {% url 'accounts:register' as register_url %}
 {% url 'carts:home' as cart_url %}
@@ -57,9 +58,17 @@
               </a>
             </li>
             {% if request.user.is_authenticated %}
-                <li class="nav-item {% if request.path == login_url %}active{% endif %} ">
-                  <a class="nav-link" href="{{logout_url}}">Logout</a>
+                <li class="nav-item dropdown {% if request.path == marketing_url %}active{% endif %} ">
+                  <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-ha>{{request.user|title}}</a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="{{marketing_url}}" > My Preferences </a>
+                    <a class="dropdown-item disabled" href="#" > My Profile </a>
+                    <a class="dropdown-item disabled " href="#" > My Orders </a>
+                    <a class="dropdown-item disabled " href="#" > My Payments </a>
+                    <a class="dropdown-item" href="{{logout_url}}">Logout</a>
+                  </div>
                 </li>
+                
               {% else %}
                 <li class="nav-item {% if request.path == login_url %}active{% endif %}">
                   <a class="nav-link" href="{{login_url}}">Login</a>
