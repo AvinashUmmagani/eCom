@@ -17,10 +17,10 @@
         <a  style="text-decoration : None;color:black" href="{{obj.get_absolute_url}}">
             <div class="row no-gutters">
                 <div class="col-md-10 image-fluid">
-                    {% if  obj.image %} 
+                    {% if  request.user.is_authenticated %} 
                         <img src="{{obj.image.url}}" class="card-img" alt="Image not found">
                     {% else %}
-                    <img src="" alt="Image Not found" srcset="">
+                        <img src="" alt="Image Not found" srcset="">
                     {% endif %}
                 </div>
         </a>

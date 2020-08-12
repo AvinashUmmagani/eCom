@@ -9,7 +9,7 @@
         <div class="row no-gutters">
             <div class="col-md-4">
                 <a href="{{obj.get_absolute_url}}" >
-                    {% if  obj.image %} 
+                    {% if  request.user.is_authenticated %} 
                     <img src="{{obj.image.url}}" style="max-width: 20rem;max-height: 20rem;" class="card-img-top" alt="Image Not found">       
                     {% else %}
                     <img src="" alt="Image Not found" srcset="">
