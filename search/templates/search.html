@@ -28,7 +28,7 @@
                         <p class="card-text">{{obj.description | truncatewords:15}}</p>
                         <p class="card-text"><small class="text-muted">&#8377;{{obj.price}}</small></p>
                         {% include 'addToCart.html' with product=obj cart=cart  %}
-                        {% if req.user.is_authenticated %}
+                        {% if request.user.is_authenticated %}
                         <a href="{{obj.get_absolute_url}}">view more</a>
                         {%else%}
                         <small class="card-text">To view more, please login</small>
