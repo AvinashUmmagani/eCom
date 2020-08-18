@@ -30,3 +30,5 @@ You can visit the site https://e-comapp.herokuapp.com for live demo (Media files
 ***
 ![Product Screen](https://github.com/AvinashUmmagani/eCom/blob/master/assets/Screenshot%209.png)
 
+
+#### Just samples, made for learning!
