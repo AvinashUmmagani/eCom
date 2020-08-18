@@ -22,7 +22,7 @@ from django.conf.urls.static import static
 from django.conf.urls import url
 from bill.views import payment_method_view, payment_method_createview
 from carts.views import cart_detail_api_view 
-from marketing.views import MarketingPreferenceUpdateView, MailchimpWebhookView
+from marketing.views import MarketingPreferenceUpdateView
 
 
 
@@ -41,7 +41,6 @@ urlpatterns = [
     url(r'billing/payment-method/$',payment_method_view,name = 'billing-payment-method'),
     url(r'billing/payment-method/create/$',payment_method_createview,name = 'billing-payment-method-endpoint'),
     url(r'^settings/email/$', MarketingPreferenceUpdateView.as_view(), name = 'marketing-pref'),
-    url(r'^webhooks/mailchimp/$', MailchimpWebhookView.as_view(), name = 'webhooks-mailchimp'),
 ]   
 
 if settings.DEBUG:
