@@ -18,7 +18,8 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel ="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href='{% static "css/myfile.css" %}'>
-    <title>Welcome !</title>
+    <title>eCom | Welcome !</title>
+    <link rel="shortcut icon" href="{% static 'images/brand.jpg' %}" type="image/x-icon">
   </head>   
   <body>
     <nav class="navbar navbar-expand-lg navbar-dark" style="background-color:black">
@@ -41,8 +42,10 @@
             <li class="nav-item mr-5 {% if request.path == products_url %}active{% endif %}">
               <a class="nav-link" href="{{products_url}}">Products</a>
             </li>
+          </ul>
+          <ul class="navbar-nav ml-auto">
             <li>
-              <form action="{% url 'search:list' %}" method="GET" class="form my-2 my-lg-0 search-form" style="width:500px !important">
+              <form action="{% url 'search:list' %}" method="GET" class="form my-2 my-lg-0 search-form">
                 <div class="input-group">
                   <input class="form-control" type="search" placeholder="Search" name="q" value="{{request.GET.q}}" aria-label="Search">
                   <span class="input-group-btn">
@@ -51,12 +54,11 @@
                 </div>
               </form>
             </li>
-          </ul>
-          <ul class="navbar-nav ml-auto">
             <li class="nav-item {% if request.path == cart_url %}active{% endif %} ">
               <a class="nav-link" href="{{cart_url}}"><i class="fa fa-shopping-cart" aria-hidden="true"><span class="navbar-cart-count">{{request.session.cart_items}}</span></i>
               </a>
             </li>
+            
             {% if request.user.is_authenticated %}
                 <li class="nav-item dropdown {% if request.path == marketing_url %}active{% endif %} ">
                   <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-ha>{{request.user|title}}</a>
