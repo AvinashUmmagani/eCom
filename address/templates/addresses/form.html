@@ -1,4 +1,4 @@
-<div style="width:40%" class="container">
+<div style="width:40%" class="form-group">
     <form action="{% if action_url %}{{action_url}}{% else %}{% url 'accounts:login' %}{%endif%}" method="POST">
         {% csrf_token %}
             {% if next_url %}

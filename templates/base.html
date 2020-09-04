@@ -20,6 +20,29 @@
     <link rel="stylesheet" href='{% static "css/myfile.css" %}'>
     <title>eCom | Welcome !</title>
     <link rel="shortcut icon" href="{% static 'images/brand.jpg' %}" type="image/x-icon">
+    <style>
+      
+      ::-webkit-scrollbar {
+        width: 10px;
+      }
+      
+      
+      ::-webkit-scrollbar-track {
+        box-shadow: inset 0 0 4px grey; 
+        border-radius: 10px;
+      }
+       
+      
+      ::-webkit-scrollbar-thumb {
+        background: black; 
+        border-radius: 10px;
+      }
+      
+      ::-webkit-scrollbar-thumb:hover {
+        background: grey; 
+      }
+      </style>      
+
   </head>   
   <body>
     <nav class="navbar navbar-expand-lg navbar-dark" style="background-color:black">
@@ -61,7 +84,7 @@
             
             {% if request.user.is_authenticated %}
                 <li class="nav-item dropdown {% if request.path == marketing_url %}active{% endif %} ">
-                  <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-ha>{{request.user|title}}</a>
+                  <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-ha>{{request.user}}</a>
                   <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="{{marketing_url}}" > My Preferences </a>
                     <a class="dropdown-item disabled" href="#" > My Profile </a>
