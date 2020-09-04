@@ -20,7 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__fil
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'sxx&w^)9#y%h8^!w*_!%55zv7^+zu466^36!m$&-5c3!s2(j$)'
+SECRET_KEY = '' #django secret key
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -54,12 +54,12 @@ AUTH_USER_MODEL = 'accounts.User'
 
 FORCE_INACTIVE_USER_ENDSESSION = False
 
-MAILCHIMP_API_KEY = 'ccb2cba8841b6dafb3d72cadf1000c76-us10'
-MAILCHIMP_DATA_CENTER  ='us10'
-MAILCHIMP_EMAIL_LIST_ID= '21c8486d02'
+MAILCHIMP_API_KEY = '' #api key
+MAILCHIMP_DATA_CENTER  ='' #data center
+MAILCHIMP_EMAIL_LIST_ID= '' #email list id
 
-STRIPE_SECRET_KEY = 'sk_test_vQMUKe3reph39hVffrrTHINx00hLBGvtxN'
-STRIPE_PUB_KEY = 'pk_test_YAkn6NLTWIOdoYVdXyh0oyLx0048Jhc6NS'
+STRIPE_SECRET_KEY = '' #stripe secretkey
+STRIPE_PUB_KEY = '' #stripe public key
 
 MIDDLEWARE = [
     'whitenoise.middleware.WhiteNoiseMiddleware',
